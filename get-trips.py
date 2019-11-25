@@ -60,7 +60,8 @@ def main(tracker_id, start_date, end_date, username, password, token):
             #fin de loop
 
         mydata = ET.tostring(root, encoding='utf8', method='xml')
-        myfile = open(positions[0]['fixtime'][:-5]+".gpx", "w")
+        filename = (positions[0]['fixtime'][:-5]).replace(":", "-")
+        myfile = open(filename+".gpx", "w")
         myfile.write(mydata.decode("utf-8"))
 
 if __name__ == "__main__":
