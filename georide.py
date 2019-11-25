@@ -20,6 +20,8 @@ class georide_cli:
         r = requests.get(url, params=payload, headers=requestHeaders)
         if r.status_code == 401:
             raise AuthError("Token or trackerID not correct")
+        if r.status_code == 403:
+            raise AuthError("trackerID forbidden")
         return r.json()
 
     def getNewToken(self, user, password):
